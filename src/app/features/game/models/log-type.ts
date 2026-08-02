@@ -1,0 +1,7 @@
+export enum LogType {
+    ACTION='ACTION',
+    ITEM_FOUND='ITEM_FOUND',
+    ITEM_USED='ITEM_USED',
+    ITEM_TRIGGERED='ITEM_TRIGGERED',
+    SYSTEM='SYSTEM'
+}

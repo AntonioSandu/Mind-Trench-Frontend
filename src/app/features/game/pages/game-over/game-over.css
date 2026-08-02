@@ -1,0 +1,36 @@
+:host{
+    display:block;
+    height:100%;
+}
+
+.game-over-container{
+
+    height:100%;
+
+    display:flex;
+    flex-direction:column;
+
+    justify-content:center;
+    align-items:center;
+
+    text-align:center;
+    gap:1.5rem;
+}
+
+.victory{
+
+    color:#00ff41;
+
+    text-shadow:0 0 15px #00ff41;
+
+    align-self: center;
+
+}
+
+.defeat{
+
+    color:#ff3333;
+
+    text-shadow:0 0 15px #ff3333;
+
+}

@@ -1,0 +1,33 @@
+.continue-dialog{
+
+    width:85vw;
+
+    max-width:none;
+
+    margin:auto;
+
+}
+
+.card {
+
+  min-height: 220px;
+
+}
+
+.game-buttons{
+
+    display:flex;
+
+    gap:.5rem;
+
+    margin-top:auto;
+
+    flex-wrap:wrap;
+
+}
+
+.game-buttons button{
+
+    flex:1 1 8rem;
+
+}

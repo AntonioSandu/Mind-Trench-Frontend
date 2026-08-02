@@ -1,0 +1,108 @@
+<main class="manual-page">
+
+    <header class="page-header">
+
+        <h2>
+            Survival Manual
+        </h2>
+
+        <button
+            class="btn btn-matrix"
+            (click)="close()">
+
+            Back
+
+        </button>
+
+    </header>
+
+    <section class="manual-content">
+
+        <aside class="manual-index">
+
+            <button
+                class="manual-link"
+                [class.selected]="currentSection() === ManualSection.LORE"
+                (click)="show(ManualSection.LORE)">
+                Lore
+            </button>
+
+            <button
+                class="manual-link"
+                [class.selected]="currentSection() === ManualSection.MAP"
+                (click)="show(ManualSection.MAP)">
+                Map
+            </button>
+
+            <button
+                class="manual-link"
+                [class.selected]="currentSection() === ManualSection.COMMANDS"
+                (click)="show(ManualSection.COMMANDS)">
+                Turns and commands
+            </button>
+
+            <button
+                class="manual-link"
+                [class.selected]="currentSection() === ManualSection.ITEMS"
+                (click)="show(ManualSection.ITEMS)">
+                Items
+            </button>
+
+        </aside>
+
+        <article class="manual-text">
+
+            @if(currentSection() === ManualSection.LORE){
+                <section class="lore">
+                    <h3>Lore</h3>
+                    <p>In a future where humans mixed their brains with machines, the world has been ravaged by a mysterious virus, capable of infecting both wires and neurons. You've been recently infected, for a while the virus has been dormant and you know there is no cure, but you couldn't help looking for anything that promised to help your condition, and then you find it: while surfing the internet you come across a recent article that talks about a possible cure for this deadly desease. It's a technique based on the Virtual Internal Meditation, developed by the New Monks.</p>
+                    <p>In it you read about one monk who survived the encounter by challenging the virus directly to a sort of game. And the virus can't deny a challenge like that, it must be because of a vestigial remnant of its source code... Well, you don't understand much, but you know you don't have any other possibilities, so you decide to say goodbye to your dog Fang in case you don't make it and start meditating. </p>
+                    
+                    <p>In this survival manual, you will find essential information for understanding the game and its mechanics.</p>
+                </section>
+            }
+
+            @if(currentSection() === ManualSection.MAP){
+                <section class="map">
+                    <h3>Map</h3>
+                    <p>So, the basics are simple, you find yourself in a map made of nodes and edges, seven nodes to be exact, form A to G, and they are connected as follows: A connects to B and C, B connects to A, C and F (through a tunnel though), C connects to A, B and D, D connects to C and E, E connects to D, F and G, F connects to B (through the tunnel), E and G, and G connects to E and F.</p>
+                    <p>The tunnel is a special type of edge, that has some niche interactons with items, those are: one can't place wires in tunnels, you're not able to see with shears if there's something on the other side, Nukes launched in one end of the tunnel won't affect the other.</p>                  
+                </section>
+            }
+
+            @if(currentSection() === ManualSection.COMMANDS){
+                <section class="turns-and-commands">
+                    <h3>Turns and Commands</h3>
+                    <p>You will be fighting the virus who will be in a map constructed just like yours, and it will be able to do the same things you can, so don't expect it to go easy on you. The objective is to strike it three times, after which the virus will be deleted from your system.</p>
+
+                    <p>In this map you can either MOVE to an adjacent node, STRIKE an enemy node (be careful though, this will reveal your position, smoke will rise up from where you shot) or decide to SLEEP on the node you're staying to conjure items.</p>
+                    <p>The items will be conjured randomly from a restricted pool of eleven items (see items section), and will be stored in your inventory. Every lasting action you take will be tracked in the logs, where you can consult what happened after a day has passed (a day passes everytime you make a move). </p> 
+
+                    <p>Everytime someone hits the opponent the battlefield resets, the inventory is wiped and both players will be teleported on a random node, letting you start over. If the virus hits you three times, you die.</p>
+                </section>
+            }
+
+            @if(currentSection() === ManualSection.ITEMS){
+                <section class="items">
+                    <h3>Items</h3>
+                    <p>Your inventory has a max of eight slots, so you can hold up to eight items at once. Once you reach the maximum capacity, sleeping won't give you any more items, so use them! (Or forget them if you really don't want to use them)</p>
+
+                    <p>And as for the items themselves, they are divided in three main categories: those that give you direct information about the enemy or battlefield (like shears and bird), map effects (like beartrap, wire and umbrella) and statuses (like stick or nuke). </p>
+                    <p>There are eleven items, each with its own purpose, I won't bore you with the details here, you will see their description in game, but know that there are some niche interactions, as listed below, that are not described in game, so if you care, take your time to read them.</p> 
+                    
+                    <p>Items special interaction:</p> 
+                    <p>- When beartraps trap a player they will snap, forcing the player to spend all their energies for the turn freeing themselves (so that player won't be able to do anything else for the turn). The following turn it will disappear and the player that stepped on it will be able to resume what they were doing. The owner of the trap will be ONLY notified of the DISAPPEARENCE of the trap, NOT the snapping.</p>
+                    <p>- This means that items like shears will reveal immediatly the disappeacence of a wire or a beartrap, be careful of what you cut.</p>
+                    <p>- Also, if you step on a beartrap while having a stick, the beartrap will disappear without catching you.</p>
+                    <p>- If you are either charging or holding onto a strike modifier (nuke or napalm), you cannot start a new one, so mind this.</p>
+                    <p>- Wire, campfire, umbrella, stick and silencer only last a turn, don't waste them (for example don't move after placing a campfire).</p>
+                    <p>- Campfire will reveal your position, the enemy will see smoke rising just like after a strike, use this info tactically.</p>
+                    <p>- Silencer works in combo with strike modifiers.</p>
+                </section>
+            }
+
+        </article>
+
+    </section>
+
+</main>

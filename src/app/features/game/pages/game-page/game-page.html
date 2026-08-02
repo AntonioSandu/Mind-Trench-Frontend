@@ -1,0 +1,250 @@
+<main class="game-page container-fluid">
+
+  @if(gameOver()){
+  
+    <app-game-over
+      [result]="gameResult()!"
+      (returnDashboard)="exitGame()">
+    </app-game-over>
+  
+  }
+  @else if(isLoading()) {
+  
+    <p class="screen-message">
+      Loading...
+    </p>
+  
+  } 
+  @else if (errorMessage()) {
+    <app-game-error
+      [message]="errorMessage()!"
+      (retry)="reloadPage()"
+      (exit)="exitGame()">
+    </app-game-error>
+
+  } 
+  @else if (gameState(); as game) {
+
+    <header class="d-flex justify-content-between align-items-center mb-2">
+      <h4 class="mb-0">
+        Game Mode: {{ gameState()?.mode }}
+      </h4>
+
+      <button class="btn btn-matrix" (click)="exitGame()">
+        Quit Game
+      </button>
+
+    </header>
+
+    <section class="mobile-tabs">
+      <div class="btn-group w-100 mb-3">
+        <button
+          class="btn mode-btn"
+          (click)="mobileTab.set('game')"
+          [class.selected]="mobileTab() === 'game'">
+          Game Info
+        </button>
+
+        <button
+          class="btn mode-btn"
+          (click)="mobileTab.set('logs')"
+          [class.selected]="mobileTab() === 'logs'">
+          Logs
+        </button>
+      </div>
+    </section>
+
+    <section class="game-content">
+
+      <div class="left-side"
+      [class.mobile-hidden]="mobileTab() === 'logs'">
+        <div class="top-area">
+          <div class="top-subsection">
+            <section class="info-panel">
+              <p>
+                Current Health: 
+                <span class="hearts" aria-hidden="true">
+                  @for(full of playerHearts(); track $index){
+                    <img
+                      [src]="full ? 'info-panel/full-heart.png' : 'info-panel/empty-heart.png'"
+                      class="heart"
+                      alt="">
+                  }
+                </span>
+
+                <span class="sr-only">
+                  {{ game.playerHealth }} out of 3.
+                </span>
+              </p>
+
+              @if (game.mode === GameMode.NORMAL) {
+                <p>
+                  Virus' Health:
+                  <span class="hearts" aria-hidden="true">
+                    @for(full of bossHearts(); track $index){
+                      <img
+                        [src]="full ? 'info-panel/full-heart.png' : 'info-panel/empty-heart.png'"
+                        class="heart"
+                        alt="">
+                    }
+                  </span>
+                  <span class="sr-only">
+                    {{ game.bossHealth }} out of 3.
+                  </span>
+                </p>
+              } @else {
+                <p>
+                  Current Endless Score:
+                  {{ game.endlessScore }}
+                </p>
+              }
+            </section>
+
+            <section class="map-panel">  
+              @if(gameState()){
+                <app-map
+                  [gameState]="gameState()!"
+                  aria-hidden="true">
+                </app-map>
+                <div class="sr-only" aria-live="polite">
+                  You are currently on node {{ game.playerNode }}.
+                </div>
+              }
+            </section>
+          </div>
+
+          <div class="bottom-subsection">
+            <h6>Statuses:</h6>
+            <section class="status-panel">
+              @for (status of allStatuses; track status) {
+                <span class="status-badge" 
+                      [class.active]="hasStatus(status)" 
+                      [class.trapped]="status === StatusEffectType.TRAPPED && hasStatus(status)">
+                  {{ status }}
+                </span>
+              }
+            </section>
+          </div>
+
+        </div>
+
+        <section class="actions-panel actions-desktop">
+          @if(hasStatus(StatusEffectType.TRAPPED)){
+
+            <button class="game-action stay-still" (click)="stayStill()">
+              Stay Still
+            </button>
+
+          } @else {
+  
+            <button class="game-action" (click)="move()">
+              Move
+            </button>
+
+            <button class="game-action" (click)="strike()">
+              Strike
+            </button>
+
+            <button class="game-action" (click)="sleep()">
+              Sleep
+            </button>
+
+            <button class="game-action" (click)="openInventory()">
+              Inventory
+            </button>
+          }
+
+        </section>
+
+      </div>
+
+      <aside class="logs-panel"
+      [class.mobile-hidden]="mobileTab() === 'game'">
+        <div class="btn-group w-100 mb-3">
+          <button
+            class="btn mode-btn"
+            [class.selected]="showRecentLogs()"
+            (click)="showRecentLogs.set(true)">
+            Recent
+          </button>
+
+          <button
+            class="btn mode-btn"
+            [class.selected]="!showRecentLogs()"
+            (click)="showRecentLogs.set(false)">
+            Full
+          </button>
+        </div>
+
+        <div class="logs-list" #logsContainer>
+          @for (
+            log of displayedLogs();
+            track $index
+          ) {
+            <p class="log-entry" [class]="logClass(log.type)">
+              <span class="turn-label">
+                [Day {{log.turnNumber}}]
+              </span>
+
+              {{ log.message }}
+            </p>
+          }
+        </div>
+      </aside>
+    </section>
+
+    <section class="actions-panel actions-mobile">
+      @if(hasStatus(StatusEffectType.TRAPPED)){
+
+        <button class="game-action stay-still" (click)="stayStill()">
+          Stay Still
+        </button>
+
+      } @else {
+
+        <button class="game-action" (click)="move()">
+          Move
+        </button>
+  
+        <button class="game-action" (click)="strike()">
+          Strike
+        </button>
+  
+        <button class="game-action" (click)="sleep()">
+          Sleep
+        </button>
+  
+        <button class="game-action" (click)="openInventory()">
+          Inventory
+        </button>
+      }
+    </section>
+
+
+    @if(showInventory()){
+      <app-inventory
+        [inventory]="game.playerInventory"
+        (close)="closeInventory()"
+        (use)="useItem($event)"
+        (forget)="forgetItem($event)">
+      </app-inventory>
+    }
+
+    @if(showNodeSelection()){
+      <app-node-selection
+        [availableFirstNodes]="selectionConfig().firstNodes"
+        [secondNodesProvider]="selectionConfig().secondNodes"
+        [requiredNodes]="selectionConfig().requiredNodes"
+        (confirm)="nodeSelectionConfirmed($event)"
+        (cancel)="showNodeSelection.set(false)">
+      </app-node-selection>
+    }
+
+    @if(actionError(); as message){
+      <app-action-error
+        [message]="message"
+        (close)="closeActionError()">
+      </app-action-error>
+    }
+  }
+</main>

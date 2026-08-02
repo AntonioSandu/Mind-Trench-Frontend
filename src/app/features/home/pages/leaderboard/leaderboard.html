@@ -1,0 +1,80 @@
+<main class="container manual-page">
+
+    <header class="page-header">
+
+        <h2>
+            Leaderboard
+        </h2>
+
+        <button
+            class="btn btn-matrix"
+            (click)="close()">
+
+            Back
+
+        </button>
+
+    </header>
+
+    <section class="content-panel">
+
+        <section class="leaderboard">
+
+            @if(isLoading()){
+
+                <p>
+                    Loading...
+                </p>
+
+            }
+            @else if(errorMessage()){
+
+                <div class="alert alert-danger">
+
+                    {{ errorMessage() }}
+
+                </div>
+
+            }
+            @else if(leaderboard().length === 0){
+
+                <p>
+                    Nobody has played Endless mode yet.
+                </p>
+
+            }
+            @else{
+
+                @for(player of leaderboard(); track player.username){
+
+                    <div class="leaderboard-entry">
+
+                        <span class="position">
+
+                            {{ $index + 1 }}
+
+                        </span>
+
+                        <span class="username">
+
+                            {{ player.username }}
+
+                        </span>
+
+                        <span class="score">
+                            Score:
+                            {{ player.bestEndlessScore }}
+
+                        </span>
+
+                    </div>
+
+                }
+
+            }
+
+        </section>
+
+    </section>
+
+</main>

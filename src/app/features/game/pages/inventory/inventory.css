@@ -1,0 +1,240 @@
+.modal-body{
+
+    overflow:hidden;
+
+    display:flex;
+
+    flex-direction:column;
+
+}
+
+.inventory-grid{
+
+    flex:1;
+
+    display:grid;
+
+    grid-template-columns:repeat(auto-fit,minmax(10rem,1fr));
+
+    gap:1rem;
+
+}
+
+.item-card{
+
+    position:relative;
+
+    height:12rem;
+
+    perspective:1000px;
+
+    overflow:hidden;
+
+    border:1px solid #00ff41;
+
+    border-radius:8px;
+
+    background:#050505;
+
+    color:#00ff41;
+
+    cursor:pointer;
+
+    transition:.25s;
+}
+
+.item-card:hover{
+
+    transform:scale(1.08);
+
+    z-index:2;
+
+    box-shadow:
+        0 0 15px #00ff41;
+
+}
+
+.item-card:hover .card-front{
+
+    opacity:0;
+
+}
+
+.item-card:hover .card-description{
+
+    opacity:1;
+
+}
+
+.item-card.selected{
+
+    box-shadow:
+        0 0 20px #00ff41;
+
+    border-color:#00ff41;
+
+}
+
+.card-inner{
+
+    position:relative;
+
+    width:100%;
+    height:100%;
+
+    transform-style:preserve-3d;
+
+    transition:transform .5s;
+}
+
+.item-card:hover .card-inner{
+
+    transform:rotateY(180deg);
+
+}
+
+.card-art{
+
+    width:64px;
+
+    height:64px;
+
+    image-rendering:pixelated;
+
+    object-fit:contain;
+
+}
+
+.card-name{
+
+    border-top:1px solid #00ff41;
+
+    padding:.5rem;
+
+    text-align:center;
+}
+
+.card-front{
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+    align-items:center;
+
+    gap:.5rem;
+}
+
+.card-front,
+.card-back{
+
+    position:absolute;
+
+    inset:0;
+
+    backface-visibility:hidden;
+}
+
+.card-back{
+
+    transform:rotateY(180deg);
+
+    display:flex;
+    
+    font-size: 0.7rem;
+
+    justify-content:center;
+
+    align-items:center;
+
+    padding:1rem;
+
+    text-align:center;
+
+    background:#050505;
+
+}
+
+.void-text{
+
+    height:100%;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    color:#666;
+}
+
+.inventory-actions{
+
+    flex-shrink:0;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    gap:1rem;
+
+    padding-top:1rem;
+
+}
+
+.selected-info{
+
+    flex:1;
+}
+
+button:disabled{
+
+    opacity:.4;
+
+    cursor:not-allowed;
+
+}
+
+.page-dot {
+
+    width:14px;
+
+    height:14px;
+
+    padding:0;
+
+    border-radius:50%;
+
+    border:1px solid #00ff41;
+
+    background:#050505;
+
+    cursor:pointer;
+
+    transition:.2s;
+
+}
+
+
+
+.page-dot:hover {
+
+    box-shadow:
+        0 0 8px #00ff41;
+
+}
+
+
+
+.page-dot.active {
+
+    background:#00ff41;
+
+    box-shadow:
+        0 0 10px #00ff41;
+
+}

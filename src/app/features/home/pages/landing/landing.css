@@ -1,0 +1,71 @@
+.logo {
+
+    width: 20em;
+
+    image-rendering: pixelated;
+
+    animation: logoIntro .9s ease-out forwards;
+
+}
+
+@keyframes logoIntro {
+
+    0%{
+
+        opacity:0;
+
+        transform:translateY(-80px);
+
+    }
+
+    100%{
+
+        opacity:1;
+
+        transform:translateY(0);
+
+    }
+
+}
+
+.display-1{
+
+    opacity:0;
+
+    animation:titleIntro .7s ease forwards;
+
+    animation-delay:.55s;
+
+}
+
+.lead{
+
+    opacity:0;
+
+    color:#f9f9f9;
+
+    animation:titleIntro .7s ease forwards;
+
+    animation-delay:.8s;
+
+}
+
+@keyframes titleIntro{
+
+    from{
+
+        opacity:0;
+
+        transform:translateY(12px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:translateY(0);
+
+    }
+
+}

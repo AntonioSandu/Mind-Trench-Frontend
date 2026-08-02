@@ -1,0 +1,76 @@
+<div class="modal-backdrop fade show"></div>
+
+<div class="modal fade show d-block" tabindex="-1" role="dialog" aria-modal="true" cdkTrapFocus [cdkTrapFocusAutoCapture]="true">
+  
+  <div class="modal-dialog modal-dialog-centered">
+
+    <div class="modal-content">
+
+      <div class="modal-header">
+
+        <h5 class="modal-title">
+          New Game
+        </h5>
+
+        <button
+          type="button"
+          class="btn-close"
+          (click)="cancel()"
+        ></button>
+
+      </div>
+
+      <div class="modal-body">
+
+        <p>
+          Choose your game mode:
+        </p>
+
+        <div class="d-grid gap-3">
+
+          <button
+            class="btn mode-btn"
+            [class.selected]="selectedMode() === GameMode.NORMAL"
+            (click)="selectMode(GameMode.NORMAL)"
+          >
+            Normal
+          </button>
+
+          <button
+            class="btn mode-btn"
+            [class.selected]="selectedMode() === GameMode.ENDLESS"
+            (click)="selectMode(GameMode.ENDLESS)"
+          >
+            Endless
+          </button>
+          
+        </div>
+
+        @if (errorMessage()) {
+
+          <div class="alert alert-danger mt-3">
+
+            {{ errorMessage() }}
+
+          </div>
+
+        }
+
+      </div>
+
+      <div class="modal-footer">
+
+        <button
+          class="btn btn-matrix"
+          [disabled]="isLoading()"
+          (click)="createGame()"
+        >
+          Create Game
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+</div>

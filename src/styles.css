@@ -1,0 +1,238 @@
+@import 'bootstrap/dist/css/bootstrap.min.css';
+
+/* GLOBAL */
+body {
+    background-color: #000;
+    color: #00ff41;
+    font-family: monospace;
+}
+
+a {
+    color: #00ff41;
+}
+
+a:hover {
+    color: #adffad;
+}
+
+h1, h2, h3 {
+    color: #00ff41;
+}
+
+p {
+    color: #a2a2a2;
+}
+
+/* FORMS */
+.form-control {
+    background-color: #111;
+    color: #00ff41;
+    border: 1px solid #00ff41;
+}
+
+.form-control:focus {
+    background-color: #111;
+    color: #00ff41;
+    border-color: #00ff41;
+    box-shadow: none;
+}
+
+.form-control::placeholder {
+    color: #666;
+}
+
+.form-label {
+    color: #a2a2a2;
+}
+
+/*Per browser autofill*/
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+select:-webkit-autofill {
+
+    -webkit-box-shadow:
+        0 0 0 1000px #111 inset;
+
+    -webkit-text-fill-color:
+        #00ff41;
+
+    caret-color:
+        #00ff41;
+
+    border:
+        1px solid #00ff41;
+
+    transition:
+        background-color 5000s ease-in-out 0s;
+}
+
+/* BUTTONS */
+.btn-matrix {
+    background-color: black;
+    border: 1px solid #00ff41;
+    margin: 0;
+    color: #00ff41;
+
+    transition:
+        background-color 0.2s,
+        color 0.2s,
+        box-shadow 0.2s;
+}
+
+.btn-matrix:hover,
+.btn-matrix:focus,
+.btn-matrix:active {
+    background-color: #00ff41;
+    color: black;
+
+    border-color: #00ff41;
+
+    box-shadow:
+        0 0 8px #00ff41;
+}
+
+.btn-matrix:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/*pulanti outline*/
+.btn-matrix-outline {
+    background-color: transparent;
+    border: 1px solid #00ff41;
+    color: #00ff41;
+
+    transition: all 0.2s;
+}
+
+.btn-matrix-outline:hover,
+.btn-matrix-outline:focus,
+.btn-matrix-outline:active {
+    background-color: #00ff41;
+    color: black;
+
+    border-color: #00ff41;
+    outline: none;
+}
+
+.btn.btn-matrix-danger {
+    background-color: black;
+    border: 1px solid #ff3b3b;
+    color: #ff3b3b;
+
+    transition:
+        background-color 0.2s,
+        color 0.2s,
+        box-shadow 0.2s;
+}
+
+.btn.btn-matrix-danger:hover,
+.btn.btn-matrix-danger:focus,
+.btn.btn-matrix-danger:active {
+    background-color: #ff3b3b;
+    color: black;
+
+    border-color: #ff3b3b;
+    box-shadow: 0 0 8px #ff3b3b;
+
+    outline: none;
+}
+
+.btn.btn-matrix-danger:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.mode-btn {
+    border: 1px solid #00ff41;
+    color: #00ff41;
+    background-color: transparent;
+    transition: all 0.2s ease;
+}
+
+.mode-btn:hover {
+    background-color: #00ff41;
+    color: black;
+}
+
+.mode-btn.selected {
+    background-color: #00ff41;
+    color: black;
+    font-weight: bold;
+    box-shadow: 0 0 8px #00ff41;
+}
+
+/* ALERTS */
+.alert-danger {
+    background-color: black;
+    border: 1px solid red;
+    color: red;
+}
+
+.game-alert {
+    margin-top: 1rem;
+    background-color: #000;
+    border: 1px solid #ff3b3b;
+    color: #b6b6b6;
+}
+
+/* CARDS */
+.card {
+    background-color: #111;
+    border: 1px solid #00ff41;
+}
+
+.empty-slot {
+    color: #b3b3b3;
+    opacity: 0.35;
+    font-style: italic;
+}
+
+/* MODAL */
+.modal-backdrop.show {
+    background-color: rgba(0, 0, 0, 0.85);
+}
+
+.modal-content {
+    background-color: rgba(17, 17, 17, 0.85);
+    border: 1px solid #00ff41;
+    color: #00ff41;
+}
+
+.modal-header {
+    border-bottom: 1px solid #00ff41;
+    background-color: rgba(0, 0, 0, 0.25);
+}
+
+.modal-footer {
+    border-top: 1px solid #00ff41;
+    background-color: rgba(0, 0, 0, 0.25);
+}
+
+.modal-title {
+    color: #00ff41;
+}
+
+.btn-close {
+    filter: invert(1);
+    opacity: 0.8;
+}
+
+.btn-close:hover {
+    opacity: 1;
+}
+
+/* SCREEN READER */
+.sr-only{
+    position:absolute;
+    width:1px;
+    height:1px;
+    padding:0;
+    margin:-1px;
+    overflow:hidden;
+    clip:rect(0,0,0,0);
+    white-space:nowrap;
+    border:0;
+}

@@ -1,0 +1,45 @@
+<div class="game-over-container">
+
+    @if(result() === GameResult.VICTORY){
+
+        <h1 class="victory">
+
+            SYSTEM PURGED
+
+        </h1>
+
+        <p>
+
+            Congratulations.
+
+            The virus has been eliminated, your brain has been saved.
+
+        </p>
+
+    }@else{
+
+        <h1 class="defeat">
+
+            SYSTEM COMPROMISED
+
+        </h1>
+
+        <p>
+
+            The virus has taken control of your brain, you lost.
+
+        </p>
+
+    }
+
+    <button
+
+        class="btn btn-matrix"
+
+        (click)="returnDashboard.emit()">
+
+        Return to Dashboard
+
+    </button>
+
+</div>

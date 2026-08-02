@@ -1,0 +1,35 @@
+.error-overlay{
+    position:absolute;
+    inset:0;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    background:rgba(0,0,0,.8);
+    z-index:1000;
+}
+
+.error-box{
+
+    width:min(90%,400px);
+
+    padding:2rem;
+
+    background:#111;
+
+    border:1px solid #ff3b3b;
+
+    border-radius:8px;
+
+    text-align:center;
+
+    color:#ff3b3b;
+}
+
+.error-actions{
+
+    display:flex;
+    justify-content:center;
+    gap:1rem;
+}

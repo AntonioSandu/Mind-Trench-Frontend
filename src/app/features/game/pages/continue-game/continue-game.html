@@ -1,0 +1,124 @@
+<div class="modal-backdrop fade show"></div>
+
+<div class="modal fade show d-block" tabindex="-1" role="dialog" aria-modal="true" cdkTrapFocus [cdkTrapFocusAutoCapture]="true">
+
+  <div class="modal-dialog continue-dialog modal-dialog-centered">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <h5 class="modal-title">
+          Continue Game
+        </h5>
+
+        <button
+          type="button"
+          class="btn-close"
+          (click)="cancel()"
+        ></button>
+      </div>
+
+      <div class="modal-body">
+
+        <div
+          class="btn-group w-100 mb-4"
+        >
+          <button
+            class="btn mode-btn"
+            [class.selected]="currentMode() === GameMode.NORMAL"
+            [disabled]="!hasNormalGames()"
+            (click)="selectMode(GameMode.NORMAL)"
+          >
+            Normal
+          </button>
+
+          <button
+            class="btn mode-btn"
+            [class.selected]="currentMode() === GameMode.ENDLESS"
+            [disabled]="!hasEndlessGames()"
+            (click)="selectMode(GameMode.ENDLESS)"
+          >
+            Endless
+          </button>
+        </div>
+
+        @if (errorMessage()) {
+        <div
+            class="alert alert-danger mb-3"
+        >
+            {{ errorMessage() }}
+        </div>
+        }
+
+        <div class="row">
+
+          @for (
+            game of displayedGames();
+            track $index
+          ) {
+
+            <div class="col-md-4">
+
+              @if (game) {
+
+                <div
+                  class="card h-100"
+                >
+                  <div class="card-body d-flex flex-column">
+
+                    <p>
+                      Game #{{ game.id }}
+                    </p>
+
+                    <p>
+                      Turn:
+                      {{ game.turnNumber }}
+                    </p>
+
+                    <p>
+                      {{ formatDate(game.createdAt) }}
+                    </p>
+
+                    <div class="game-buttons">
+                    <button
+                        class="btn btn-matrix"
+                        [disabled]="isDeleting()"
+                        (click)="continueGame(game.id)"
+                    >
+                        Continue
+                    </button>
+
+                    <button
+                        class="btn btn-matrix-danger"
+                        [disabled]="isDeleting()"
+                        (click)="deleteGame(game.id)"
+                    >
+                        Delete
+                    </button>
+                    </div>
+
+                  </div>
+                </div>
+
+              } @else {
+
+                <div
+                  class="card h-100"
+                >
+                  <div class="card-body empty-slot d-flex justify-content-center align-items-center">
+                    Empty slot
+                  </div>
+                </div>
+
+              }
+
+            </div>
+
+          }
+
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</div>

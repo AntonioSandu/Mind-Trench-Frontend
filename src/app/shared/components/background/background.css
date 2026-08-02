@@ -1,0 +1,136 @@
+:host{
+
+    position:fixed;
+    inset:0;
+
+    overflow:hidden;
+
+    pointer-events:none;
+
+    z-index:-100;
+
+}
+
+.scanlines{
+
+    pointer-events:none;
+
+    opacity:.25;
+
+}
+
+.retro-background{
+
+    width:100%;
+    height:100%;
+
+}
+
+
+svg{
+
+    width:100%;
+    height:100%;
+
+    position:absolute;
+
+}
+
+
+.mountain{
+
+    transform-box:fill-box;
+    transform-origin:center;
+
+}
+
+
+.layer1{
+
+    fill:#151515;
+    opacity:1;
+
+    animation:lavaMove1 35s linear infinite alternate;
+}
+
+
+.layer2{
+
+    fill:#1f1f1f;
+    opacity:1;
+
+    animation:lavaMove2 25s linear infinite alternate;
+}
+
+.layer3{
+
+    fill:#292929;
+    opacity:1;
+
+    animation:lavaMove4 12s linear infinite alternate;
+}
+
+
+@keyframes lavaMove1{
+
+    from{
+        transform:translateX(-3%);
+    }
+
+    to{
+        transform:translateX(3%);
+    }
+
+}
+
+
+@keyframes lavaMove2{
+
+    from{
+        transform:translateX(3%);
+    }
+
+    to{
+        transform:translateX(-3%);
+    }
+
+}
+
+
+@keyframes lavaMove3{
+
+    from{
+        transform:translateX(-2%);
+    }
+
+    to{
+        transform:translateX(2%);
+    }
+
+}
+
+
+@keyframes lavaMove4{
+
+    from{
+        transform:translateX(2%);
+    }
+
+    to{
+        transform:translateX(-2%);
+    }
+
+}
+
+
+@keyframes lavaMove5{
+
+    from{
+        transform:translateX(-1.5%);
+    }
+
+    to{
+        transform:translateX(1.5%);
+    }
+
+}

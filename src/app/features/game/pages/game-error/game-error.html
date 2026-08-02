@@ -1,0 +1,35 @@
+<div class="error-overlay">
+
+    <div class="error-box">
+
+        <h4>
+            Connection error
+        </h4>
+
+        <p>
+            {{ message() }}
+        </p>
+
+        <p>
+            Please try again later.
+        </p>
+
+        <div class="error-actions">
+
+            <button
+                class="btn btn-matrix-danger"
+                (click)="retry.emit()">
+                Retry
+            </button>
+
+            <button
+                class="btn btn-matrix-danger"
+                (click)="exit.emit()">
+                Quit Game
+            </button>
+
+        </div>
+
+    </div>
+
+</div>

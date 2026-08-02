@@ -1,0 +1,143 @@
+<div class="modal-backdrop fade show"></div>
+
+<div
+  class="modal fade show d-block"
+  tabindex="-1"
+  role="dialog"
+  aria-modal="true"
+  cdkTrapFocus
+  [cdkTrapFocusAutoCapture]="true">
+
+  <div class="modal-dialog modal-lg modal-dialog-centered">
+
+    <div class="modal-content">
+
+      <div class="modal-header">
+
+        <h5 class="modal-title">
+          Your Inventory:
+        </h5>
+
+        <button
+          class="btn-close"
+          (click)="cancel()">
+        </button>
+
+      </div>
+
+      <div class="modal-body">
+
+        <div class="inventory-grid">
+
+            @for(slot of visibleSlots(); track slot){
+
+              <button
+                class="item-card"
+                [class.selected]="selectedIndex() === slot"
+                [class.empty]="!inventory()[slot]"
+                [disabled]="!inventory()[slot]"
+                (click)="select(slot)">
+
+                @if(inventory()[slot]){
+
+                  <div class="card-inner">
+                    <div class="card-front">
+                      <div class="card-art">
+                        <img
+                          class="card-art"
+                          [src]="ITEM_INFO[inventory()[slot]].icon">
+                      </div>
+                      <div class="card-name">
+                        {{ ITEM_INFO[inventory()[slot]].displayName }}
+                      </div>
+
+                    </div>
+
+                    <div class="card-back">
+
+                      {{ ITEM_INFO[inventory()[slot]].description }}
+
+                    </div>
+
+                  </div>
+
+                } @else {
+
+                  <div class="void-text">
+                    Empty
+                  </div>
+
+                }
+
+              </button>
+
+            }
+
+        </div>
+
+
+        <div class="inventory-actions">
+
+            <div class="selected-info">
+
+                @if(selectedItemInfo()){
+
+                    {{ selectedItemInfo()!.displayName }}
+
+                } @else {
+
+                    Select an item
+
+                }
+
+            </div>
+
+            @if(showPages()){
+
+              <div class="inventory-pages">
+
+              <button
+                class="page-dot"
+                [class.active]="page()===0"
+                (click)="changePage(0)">
+              </button>
+
+
+              <button
+                class="page-dot"
+                [class.active]="page()===1"
+                (click)="changePage(1)">
+              </button>
+
+              </div>
+
+            }
+
+
+            <button
+                class="btn btn-matrix-danger"
+                [disabled]="selectedIndex() === null"
+                (click)="forgetSelected()">
+
+                Forget
+
+            </button>
+
+
+            <button
+                class="btn btn-matrix"
+                [disabled]="selectedIndex() === null"
+                (click)="useSelected()">
+
+                Use
+
+            </button>
+
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+</div>

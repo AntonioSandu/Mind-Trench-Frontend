@@ -1,0 +1,7 @@
+export enum MapEffectType {
+    UMBRELLA='UMBRELLA',
+    CAMPFIRE='CAMPFIRE',
+    BEARTRAP='BEARTRAP',
+    WIRE='WIRE',
+    NAPALM_SECOND_HIT='NAPALM_SECOND_HIT'
+}

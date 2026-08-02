@@ -1,0 +1,218 @@
+<div class="map-wrapper">
+
+    <div class="map-screen">
+        <svg
+            viewBox="0 0 500 450"
+            preserveAspectRatio="xMidYMid meet"
+            class="map">
+
+            <defs>
+
+                <pattern
+                    id="scanlines"
+                    width="4"
+                    height="4"
+                    patternUnits="userSpaceOnUse">
+
+                    <rect
+                        width="4"
+                        height="3"
+                        fill="transparent">
+                    </rect>
+
+                    <rect
+                        y="3"
+                        width="4"
+                        height="1"
+                        fill="rgba(255,255,255,.35)">
+                    </rect>
+
+                </pattern>
+
+            </defs>
+
+            <rect
+                x="0"
+                y="0"
+                width="500"
+                height="450"
+                rx="6"
+                ry="6"
+                class="screen-background">
+            </rect>
+
+            <g class="edges-layer">
+                @for(edge of edges; track edge){
+
+                    <line
+                        [attr.x1]="coord(edge[0]).x"
+                        [attr.y1]="coord(edge[0]).y"
+                        [attr.x2]="coord(edge[1]).x"
+                        [attr.y2]="coord(edge[1]).y"
+                        class="edge">
+                    </line>
+
+                }
+
+                @for(edge of edges; track edge){
+
+                    <line
+                        [attr.x1]="coord(edge[0], true).x"
+                        [attr.y1]="coord(edge[0], true).y"
+                        [attr.x2]="coord(edge[1], true).x"
+                        [attr.y2]="coord(edge[1], true).y"
+                        class="enemy-edge">
+                    </line>
+
+                }
+
+                <!-- tunnel -->
+
+                <line
+                    [attr.x1]="coord(tunnel[0]).x"
+                    [attr.y1]="coord(tunnel[0]).y"
+                    [attr.x2]="coord(tunnel[1]).x"
+                    [attr.y2]="coord(tunnel[1]).y"
+                    class="tunnel">
+                </line>
+
+                <line
+                    [attr.x1]="coord(tunnel[0], true).x"
+                    [attr.y1]="coord(tunnel[0], true).y"
+                    [attr.x2]="coord(tunnel[1], true).x"
+                    [attr.y2]="coord(tunnel[1], true).y"
+                    class="enemyTunnel">
+                </line>
+            </g>
+
+            <g class="nodes-layer"> 
+                @for(node of nodes; track node.id){
+
+                    <g>
+
+                        <circle
+                            [attr.cx]="node.x"
+                            [attr.cy]="node.y"
+                            r="24"
+                            class="node">
+                        </circle>
+
+                        <text
+                            [attr.x]="node.x"
+                            [attr.y]="node.y">
+
+                            {{ node.id }}
+
+                        </text>
+
+                        
+
+                    </g>
+
+                }
+
+                @for(node of enemyNodes; track node.id){
+
+                    <g>
+
+                        <circle
+                            [attr.cx]="node.x"
+                            [attr.cy]="node.y"
+                            r="24"
+                            class="enemy-node">
+                        </circle>
+
+                        <text
+                            [attr.x]="node.x"
+                            [attr.y]="node.y"
+                            class="enemy-text">
+
+                            {{ node.id }}
+
+                        </text>
+
+                    </g>
+
+                }
+
+            </g>
+
+            <g class="player-layer">
+
+                <circle
+                    [attr.cx]="coord(gameState().playerNode).x"
+                    [attr.cy]="coord(gameState().playerNode).y"
+                    r="10"
+                    class="player">
+                </circle>
+
+            </g>
+
+            <g class="effects-layer">
+
+                @for(effect of drawableEffects(); track $index){
+
+                    <image
+
+                        [attr.href]="effect.sprite"
+
+                        [attr.x]="
+                        effect.x
+                        - effect.size / 2
+                        + effect.offsetX
+                        "
+
+                        [attr.y]="
+                        effect.y
+                        - effect.size / 2
+                        + effect.offsetY
+                        "
+
+                        [attr.width]="effect.size"
+                        [attr.height]="effect.size"
+
+                        [attr.transform]="
+                        effect.type === MapEffectType.WIRE
+                        ?
+                        'rotate('+
+                        effect.rotation+
+                        ' '+
+                        effect.x+
+                        ' '+
+                        effect.y+
+                        ')'
+                        :
+                        null
+                        "
+
+                    >
+
+                    </image>
+
+                }
+
+            </g>
+
+            <rect
+                x="0"
+                y="0"
+                width="500"
+                height="450"
+                fill="url(#scanlines)"
+                class="scanlines">
+            </rect>
+
+            <rect
+                x="1"
+                y="1"
+                width="498"
+                height="448"
+                rx="6"
+                ry="6"
+                class="screen-border">
+            </rect>
+
+        </svg>
+    </div>
+
+</div>

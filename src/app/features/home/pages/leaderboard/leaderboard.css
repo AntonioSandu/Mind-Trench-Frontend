@@ -1,0 +1,128 @@
+.manual-page{
+
+    height:100vh;
+
+    display:flex;
+
+    flex-direction:column;
+
+    padding:2rem;
+
+}
+
+.page-header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:2rem;
+
+}
+
+.content-panel{
+
+    flex:1;
+
+    border:1px solid #00ff41;
+
+    border-radius:6px;
+
+    background:rgba(0,0,0,0.5);
+
+    padding:2rem;
+
+    display:flex;
+
+    min-height:0;
+}
+
+.leaderboard{
+
+    flex:1;
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:.75rem;
+
+    overflow-y:auto;
+
+    min-height:0;
+
+    padding-right:.5rem;
+
+}
+
+.leaderboard-entry{
+
+    display:grid;
+
+    grid-template-columns:3rem 1fr auto;
+
+    align-items:center;
+
+    padding:.75rem 1rem;
+
+    border:1px solid #00ff41;
+
+    border-radius:4px;
+
+}
+
+.position{
+
+    color:#00ff41;
+
+    font-weight:bold;
+
+}
+
+.username{
+
+    text-align:left;
+
+}
+
+.score{
+
+    font-weight:bold;
+
+}
+
+@media (max-width:450px){
+
+    .leaderboard-entry{
+
+        display:flex;
+
+        flex-wrap:wrap;
+
+        gap:.4rem .75rem;
+
+    }
+
+    .position{
+
+        width:2rem;
+
+    }
+
+    .username{
+
+        flex:1;
+
+    }
+
+    .score{
+
+        width:100%;
+
+        padding-left:2.75rem;
+
+    }
+
+}

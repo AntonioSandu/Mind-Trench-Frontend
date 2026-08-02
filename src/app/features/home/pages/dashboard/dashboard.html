@@ -1,0 +1,135 @@
+<main class="container-fluid dashboard-page">
+  
+  <header class="d-flex justify-content-between align-items-center mb-4">
+
+    <p>
+
+      Welcome
+      {{ authService.currentUser()?.username }}
+
+    </p>
+
+    <nav class="d-flex gap-2">
+
+      <a
+        routerLink="/user/change-password"
+        class="btn btn-matrix">
+
+        Change Password
+
+      </a>
+
+      <button
+        type="button"
+        class="btn btn-matrix"
+        (click)="logout()">
+
+        Logout
+
+      </button>
+
+    </nav>
+
+  </header>
+
+  <section class="dashboard-main">
+
+    <div class="dashboard-side">
+        
+        <button class="btn btn-matrix side-dashboard-btn"
+        routerLink="/leaderboard">
+          <span class="icon-wrapper">
+            <img
+                src="dashboard/leaderboard.png"
+                class="icon light"
+                alt="">
+            <img
+                src="dashboard/dark-leaderboard.png"
+                class="icon dark"
+                alt="">
+          </span>
+          <span>
+            Leaderboard
+          </span>
+        </button>
+
+        <button class="btn btn-matrix side-dashboard-btn"
+        routerLink="/manual">
+          <span class="icon-wrapper">
+            <img
+                src="dashboard/manual.png"
+                class="icon light"
+                alt="">
+            <img
+                src="dashboard/dark-manual.png"
+                class="icon dark"
+                alt="">
+          </span>
+          <span>
+            Manual
+          </span>
+        </button>
+        
+    </div>
+
+    <div class="dashboard-center">
+      <div class="dashboard-actions card p-4">
+        <button
+          type="button"
+          class="btn btn-matrix dashboard-btn"
+          (click)="openNewGame()">
+          New Game
+        </button>
+
+        @if (showNewGameModal()) {
+
+          <app-new-game
+            (close)="closeNewGame()"
+          />
+
+        }
+
+        <button
+          type="button"
+          class="btn btn-matrix dashboard-btn"
+          [disabled]="isLoadingGames()"
+          (click)="openContinueGame()">
+          Continue Game
+        </button>
+
+      </div>
+
+      @if (continueGameErrorMessage()) {
+        <div class="alert game-alert mt-3">
+          {{ continueGameErrorMessage() }}
+        </div>
+      }
+
+      @if (showContinueGameModal()) {
+        <app-continue-game
+          [games]="games()"
+          [initialMode]="initialContinueMode()"
+          (close)="closeContinueGame()"
+          (gameDeleted)="onGameDeleted($event)"
+        /> 
+      }
+    </div>
+
+    <div class="dashboard-side">
+    </div>
+
+  </section>
+
+  <footer class="dashboard-footer">
+    <p class="mb-0">
+      Your best Endless Score: {{ authService.currentUser()?.bestEndlessScore }}
+    </p>
+
+    <a
+      routerLink="/user/delete-account"
+      class="btn btn-matrix-danger">
+      Delete Account
+    </a>
+  </footer>
+
+</main>
