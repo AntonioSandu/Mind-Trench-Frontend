@@ -1,17 +1,17 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ActionError } from './action-error';
+import { ActionErrorComponent } from './action-error';
 
 describe('ActionError', () => {
-  let component: ActionError;
-  let fixture: ComponentFixture<ActionError>;
+  let component: ActionErrorComponent;
+  let fixture: ComponentFixture<ActionErrorComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ActionError],
+      imports: [ActionErrorComponent],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(ActionError);
+    fixture = TestBed.createComponent(ActionErrorComponent);
     component = fixture.componentInstance;
     await fixture.whenStable();
   });
